@@ -18,8 +18,13 @@ public class Server {
   public boolean registerUser(String username, String password, String email) {
     // 检查用户名是否已存在
     for (User user : users) {
-      //TODO
-      return false;
+      if (user.getUsername().equals(username)) {
+        System.out.println("username already exists.");
+        return false;
+      } else if (user.getEmail().equals(email)) {
+        System.out.println("email has already registered.");
+        return false;
+      }
     }
     User newUser = new User(username, password, email);
     users.add(newUser);
@@ -42,9 +47,17 @@ public class Server {
   */
   public User loginUser(String username, String password) {
     for (User user : users) {
-    //TODO -- find user and login
+      if (user.getUsername().equals(username)) {
+        if (user.getPassword().equals(password)) {
+          return user;
+        } else {
+          System.out.println("wrong password.");
+          return null;
+        }
+      }
     }
-    return null; // 登录失败，用户名或密码错误
+    System.out.println("wrong username.");
+    return null;
   }
 
   /**用户登录函数，通过用户邮箱登录.
@@ -55,9 +68,17 @@ public class Server {
    */
   public User loginUserByEmail(String email, String password) {
     for (User user : users) {
-      //TODO -- find user and login
+      if (user.getEmail().equals(email)) {
+        if (user.getPassword().equals(password)) {
+          return user;
+        } else {
+          System.out.println("wrong password.");
+          return null;
+        }
+      }
     }
-    return null; // 登录失败，用户名或密码错误
+    System.out.println("wrong email.");
+    return null;
   }
 
   /**用户登出函数，与远程服务器交互，存储更新后的user数据.

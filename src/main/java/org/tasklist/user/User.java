@@ -34,7 +34,7 @@ public class User {
   /**
    * 授权的设备列表.
    */
-  private List<Device> authorizedDevices;
+  private final List<Device> authorizedDevices = new ArrayList<>();
 
   /**
    * 与用户关联的任务管理器.
@@ -54,7 +54,9 @@ public class User {
    * @param email    电子邮箱地址
    */
   public User(String username, String password, String email) {
-    // TODO -- 实现构造函数逻辑
+    this.username = username;
+    this.password = password;
+    this.email = email;
   }
 
   /** 通过用户名、TaskManager和Setting对象构造用户对象.
@@ -64,9 +66,10 @@ public class User {
    * @param taskManager 任务管理器实例
    * @param setting     设置实例
    */
-  @SuppressWarnings("checkstyle:WhitespaceAround")
-  public User(String username, TaskManager taskManager, Setting setting){
-    // TODO -- 实现构造函数逻辑
+  public User(String username, TaskManager taskManager, Setting setting) {
+    this.username = username;
+    this.taskManager = taskManager;
+    this.setting = setting;
   }
 
   /** 获取用户名.
@@ -140,5 +143,29 @@ public class User {
    */
   public void unauthorizeDevice(int deviceId) {
     authorizedDevices.removeIf(device -> device.getDeviceId() == deviceId);
+  }
+
+  public List<Device> getDevices() {
+    return authorizedDevices;
+  }
+
+  /** getter函数，获得密码.
+   *
+   * @return 用户密码
+   */
+  public String getPassword() {
+    return password;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true; // 如果两个对象是同一个引用
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false; // 如果类型不匹配
+    }
+    User user = (User) obj;
+    return username.equals(user.username) && email.equals(user.email); // 根据username和email来判断是否相等
   }
 }

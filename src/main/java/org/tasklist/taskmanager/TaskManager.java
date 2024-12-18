@@ -1,5 +1,6 @@
 package org.tasklist.taskmanager;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,12 +43,44 @@ public class TaskManager {
 
   /**
    * 更新指定的任务.
-   * 当前为占位方法，具体更新接口待完善。
    *
    * @param task 要更新的任务
+   * @param newTitle 新的标题 (可为 null，表示不更新)
+   * @param newDescription 新的描述 (可为 null，表示不更新)
+   * @param newDueDate 新的截止日期 (可为 null，表示不更新)
+   * @param newPriority 新的优先级 (可为 -1，表示不更新)
+   * @param newStatus 新的任务状态 (可为 null，表示不更新)
    */
-  public void updateTask(Task task) {
-      // TODO -- 更新逻辑，对不同的信息的更新接口由Task类实现
+  public void updateTask(Task task, String newTitle, String newDescription,
+                         LocalDateTime newDueDate, short newPriority, TaskStatus newStatus) {
+    if (task == null) {
+      throw new IllegalArgumentException("任务不能为空！");
+    }
+
+    // 更新标题
+    if (newTitle != null) {
+      task.setTitle(newTitle);
+    }
+
+    // 更新描述
+    if (newDescription != null) {
+      task.setDescription(newDescription);
+    }
+
+    // 更新截止日期
+    if (newDueDate != null) {
+      task.setDueDate(newDueDate);
+    }
+
+    // 更新优先级
+    if (newPriority >= 1 && newPriority <= 3) {
+      task.setPriority(newPriority);
+    }
+
+    // 更新状态
+    if (newStatus != null) {
+      task.setStatus(newStatus);
+    }
   }
 
   /**

@@ -6,7 +6,6 @@ import java.util.List;
 import org.tasklist.label.Category;
 import org.tasklist.label.Tag;
 import org.tasklist.reminder.Reminder;
-import org.tasklist.user.User;
 
 /**
  * 任务类，表示一个任务的基本信息，包括标题、描述、截止日期、优先级、状态等.
@@ -300,5 +299,10 @@ public class Task {
    */
   public void setReminder(Reminder reminder) {
     this.reminder = reminder;
+  }
+
+  @Override
+  public String toString() {
+    return id + " " + title + " " + description;
   }
 }

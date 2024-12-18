@@ -6,5 +6,16 @@ package org.tasklist.label;
  * 可根据需要扩展更多标签特定的逻辑
  */
 public class Tag extends Label {
-  // TODO -- tag的具体实现
+  /**
+   * 传参构造函数.
+   *
+   * @param id 唯一标识符 //TODO 禁止自定义id，由系统统一分配
+   * @param name 标签名称
+   * @param description 标签描述
+   */
+  public Tag(int id, String name, String description) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+  }
 }

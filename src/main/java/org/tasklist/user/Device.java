@@ -32,6 +32,16 @@ public class Device {
    */
   private boolean isAuthorized;
 
+  /**传参构造函数.
+   *
+   * @param id 标识符
+   * @param name 设备名称
+   */
+  public Device(int id, String name) {
+    this.deviceId = id;
+    this.deviceName = name;
+  }
+
   /**
    * 授权该设备.
    * 设置设备为已授权状态。
